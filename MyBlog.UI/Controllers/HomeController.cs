@@ -39,7 +39,7 @@ namespace MyBlog.UI.Controllers
             //MyBlogContext db = new MyBlogContext(options);
             //UnitOfWork<MyBlogContext> uow = new UnitOfWork<MyBlogContext>(db);
             //UserService userService = new UserService(uow);
-            int a=5;
+            
             return View(_userService.GetAllUsers());
         }
 
