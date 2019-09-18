@@ -43,7 +43,7 @@ namespace MyBlog.UI
                     options.AccessDeniedPath = new PathString("/Error/AccesssDenied");
 
                 });
-            
+
 
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
             services.AddScoped<IUserService, UserService>();
@@ -81,8 +81,15 @@ namespace MyBlog.UI
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                name: "areas",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
         }
     }
