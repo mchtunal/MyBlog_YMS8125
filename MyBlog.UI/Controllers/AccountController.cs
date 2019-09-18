@@ -22,7 +22,7 @@ namespace MyBlog.UI.Controllers
         {
             _userService = userService;
         }
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public IActionResult Index()
         {
             return View();

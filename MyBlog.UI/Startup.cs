@@ -30,7 +30,9 @@ namespace MyBlog.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyBlogContext>(
-                x => x.UseSqlServer(Configuration.GetConnectionString("MyBlogContext"))
+                x => x
+                .UseLazyLoadingProxies()
+                .UseSqlServer(Configuration.GetConnectionString("MyBlogContext"))
             );
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -41,9 +43,12 @@ namespace MyBlog.UI
                     options.AccessDeniedPath = new PathString("/Error/AccesssDenied");
 
                 });
+            
 
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IPostService, PostService>();
 
 
             services.Configure<CookiePolicyOptions>(options =>
