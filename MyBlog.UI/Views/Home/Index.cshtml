@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-8 blog-main">
         <h3 class="pb-4 mb-4 font-italic border-bottom">
-           Mürekkepden Damlayanlar
+            Mürekkepden Damlayanlar
         </h3>
 
         <div class="blog-post">
@@ -109,3 +109,18 @@
     </aside><!-- /.blog-sidebar -->
 
 </div><!-- /.row -->
+
+@section scripts{
+    <script>
+    toastr.options.positionClass = "toast-bottom-right";
+
+    @if (Context.Request.Query["login"] == "success")
+    {
+        <text>toastr.success("Hoşgeldin @User.Identity.Name :)","Giriş Başarılı")</text>
+    }
+    else if (Context.Request.Query["logout"] == "success")
+    {
+         <text>toastr.success("Başarıyla çıkış yapıldı.")</text>
+    }
+    </script>
+}

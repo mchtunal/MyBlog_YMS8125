@@ -11,6 +11,10 @@ namespace MyBlog.DAL.Config
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            //IsUnique ile username in tekrar etmesini önlüyoruz.Sonucta bir kullanıcı adı ile bir kişi girebilmeli.Aynı kullanıcı adı birden fazla kişi tarafından kulanılamaz.
+            builder.HasIndex(x => x.UserName)
+                .IsUnique();
+
             builder.Property(x => x.Email)
                 .IsRequired()
                 .HasMaxLength(256);

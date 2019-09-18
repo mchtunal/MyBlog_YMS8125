@@ -13,7 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="~/lib/toastr.js/toastr.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -35,7 +35,14 @@
                     <a class="text-muted" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5" /><path d="M21 21l-5.2-5.2" /></svg>
                     </a>
-                    <a class="btn btn-sm btn-outline-secondary" href="#">Giriş Yap</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-sm btn-outline-secondary" asp-controller="Account" asp-action="Logout">Çıkış Yap(@User.Identity.Name)</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-sm btn-outline-warning" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                    }
                 </div>
             </div>
         </header>
@@ -72,6 +79,8 @@
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+
     @RenderSection("scripts",false)
 
 </body>

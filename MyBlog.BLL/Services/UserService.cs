@@ -69,6 +69,12 @@ namespace MyBlog.BLL.Services
             _unitOfWork.SaveChanges();
         }
 
+        public bool UserExists(string username)
+        {
+            //Kullancı varsa username mi username e eşit olan varsa true yoksa false dönecek.
+            return _userRepository.GetAll().Any(x => x.UserName == username);
+        }
+
         public bool VerifyPassword(User user, string password)
         {
             return HashHelper.VerifyHashedPassword(user.PasswordHash, password);
